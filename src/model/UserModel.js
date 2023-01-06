@@ -39,12 +39,6 @@ const userSchema = new mongoose.Schema({
             ref : "USER"
         }
     ],
-    post : [
-        {
-            type : ObjectId,
-            ref : "post"
-        }
-    ],
     totlaLikeOnPost :{
         type : Number
     },

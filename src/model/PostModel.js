@@ -13,9 +13,14 @@ const postSchema = new mongoose.Schema({
         required: true 
     },
     like :{
-        type : Number,
-        default : 0
+      type : Number,
+      default : 0
     },
+    likeByUser :[
+    {
+      type : ObjectId ,
+      ref : "USER"  
+    }],
     comment : {
         type: [String],
     },
