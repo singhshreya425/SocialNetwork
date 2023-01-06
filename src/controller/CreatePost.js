@@ -19,10 +19,10 @@ const createpost = async function (req, res) {
 
 const getPost = async function (req, res) {
   try {
-    let data = await PostModel.find().sort({ like: 1 });
+    let data = await PostModel.find().sort({ like: -1 });
     return res
       .status(200)
-      .send({ status: true, message: "profile details", data: data });
+      .send({ status: true, message: "Post details", data: data });
   } catch (error) {
     return res.status(500).send({ status: false, Message: error.Message });
   }
@@ -58,5 +58,14 @@ const LikePost = async function (req, res) {
     return  res.status(500).send({ status: false, msg: err.message });
   }
 };
+const getMostLike = async function(req, res){
+    try{
+        let data = await PostModel.find().sort({ like: -1 });
+        res.status(200).send({ status : true , msg : " most liked post is " , data : data[0] })
 
-module.exports = { createpost, getPost, LikePost };
+    }catch(err)
+    {
+        return res.status(500).send({ status : false , msg : err.message})
+    }
+}
+module.exports = { createpost, getPost, LikePost ,getMostLike };
